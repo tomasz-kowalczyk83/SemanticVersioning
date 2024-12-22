@@ -26,6 +26,8 @@ jobs:
         run: npm install @commitlint/config-conventional @commitlint/cli --save-dev
 
       - name: Debug PR Title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run:
           echo "PR Title: $PR_TITLE"
 
