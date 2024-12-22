@@ -33,7 +33,7 @@ jobs:
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          echo "$PR_TITLE" | npx commitlint || exit 1
+          echo "${{ github.event.pull_request.title }}" | npx commitlint || exit 1
 
   release:
     needs: commit-lint
