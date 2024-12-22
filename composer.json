@@ -1,0 +1,11 @@
+{
+    "name": "tomasz.k/semantic-versioning",
+    "type": "project",
+    "authors": [
+        {
+            "name": "tomasz kowalczyk",
+            "email": "tomasz.kowalczyk1983@gmail.com"
+        }
+    ],
+    "require": {}
+}
