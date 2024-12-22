@@ -25,6 +25,10 @@ jobs:
       - name: Install Commitlint
         run: npm install @commitlint/config-conventional @commitlint/cli --save-dev
 
+      - name: Debug PR Title
+        run:
+          echo "PR Title: $PR_TITLE"
+
       - name: Lint Pull Request Title
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
