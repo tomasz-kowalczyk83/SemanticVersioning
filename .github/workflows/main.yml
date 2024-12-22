@@ -31,14 +31,8 @@ jobs:
         run: |
           echo "$PR_TITLE" | npx commitlint || exit 1
 
-  tests:
-    name: Run Unit Tests
-    needs: commit-lint
-    runs-on: ubuntu-latest
-    steps:
-
   release:
-    needs: tests
+    needs: commit-lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
