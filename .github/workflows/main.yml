@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on pull request events but only for the "main" branch
   pull_request:
     branches: [ "main" ]
-#    types: [opened, edited, ready_for_review]
+    types: [opened, edited, ready_for_review]
 
 
   # Allows you to run this workflow manually from the Actions tab
@@ -22,23 +22,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
       - name: Install Commitlint
         run: npm install @commitlint/config-conventional @commitlint/cli --save-dev
+
+      - name: Debug PR Title
+        run:
+          echo "PR Title ${{ github.event.pull_request.title }}"
 
       - name: Lint Pull Request Title
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          echo "$PR_TITLE" | npx commitlint || exit 1
-
-  tests:
-    name: Run Unit Tests
-    needs: commit-lint
-    runs-on: ubuntu-latest
-    steps:
+          echo "${{ github.event.pull_request.title }}" | npx commitlint || exit 1
 
   release:
-    needs: tests
+    needs: commit-lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

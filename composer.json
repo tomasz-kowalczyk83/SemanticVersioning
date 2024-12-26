@@ -7,5 +7,7 @@
             "email": "tomasz.kowalczyk1983@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.0"
+    }
 }
